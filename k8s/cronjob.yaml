@@ -1,0 +1,47 @@
+---
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: tax-engine-agip-padron-general-cronjob
+  namespace: jx-staging
+spec:
+  schedule: "0 9,21 * * *" # At 09:00 AM and 09:00 PM
+  concurrencyPolicy: "Forbid"
+  jobTemplate:
+    spec:
+      template:
+        metadata:
+          name: tax-engine-agip-padron-general-cronjob
+        spec:
+          containers:
+          - name: tax-engine-agip-padron-general-cronjob
+            image: "699339193037.dkr.ecr.sa-east-1.amazonaws.com/calyx-servicios/bots:arba-padron-ea68271-202208132337"
+            imagePullPolicy: Always
+            command:
+              - "/etc/bootstrap.sh"
+            env:
+              - name: LOG_CONFIG_PATH
+                value: "./app/logging.ini"
+              - name: JSON_CONFIG_PATH
+                value: "./app/txt/settings.json"
+              - name: PG_HOST
+                value: "tax-engine-database-pgbouncer"
+              - name: PG_PORT
+                value: "5432"
+              - name: PG_DB
+                value: "taxengine"
+              - name: PG_USER
+                value: "taxengine"
+              - name: PG_PASSWORD
+                value: "taxengine"
+              - name: RETRO
+                value: "0"
+              - name: COMMAND
+                value: "init"
+              - name: TABLE_NAME
+                value: "agip_padron_general"  
+            resources:
+              requests:
+                cpu: "500m"
+                memory: "256Mi"
+          restartPolicy: "Never"
