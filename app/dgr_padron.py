@@ -11,6 +11,7 @@ from xpath import AgenteIngresosBrutosPage, LoginPage, MainPage, NewsRGPage, Txt
 
 # pylint: disable=unnecessary-ellipsis
 
+
 class BaseDGRPadron(ABC):
     """Clase base para navegar y scrapear los elementos deDGR Corrientes."""
 
