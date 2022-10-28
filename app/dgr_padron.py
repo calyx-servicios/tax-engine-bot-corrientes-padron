@@ -136,7 +136,7 @@ class BaseDGRPadron(ABC):
             if self._download_success():
                 return filename
             return ""
-            
+
         self._logger.info("Padrón ya descargado")
         return filename
 
