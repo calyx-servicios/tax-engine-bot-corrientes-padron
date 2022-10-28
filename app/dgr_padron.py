@@ -9,6 +9,7 @@ from selenium.common.exceptions import StaleElementReferenceException
 from selenium.webdriver.common.by import By
 from xpath import AgenteIngresosBrutosPage, LoginPage, MainPage, NewsRGPage, TxtViewPage
 
+# pylint: disable=unnecessary-ellipsis
 
 class BaseDGRPadron(ABC):
     """Clase base para navegar y scrapear los elementos deDGR Corrientes."""
@@ -133,8 +134,7 @@ class BaseDGRPadron(ABC):
 
             if self._download_success():
                 return filename
-            else:
-                return ""
+            return ""
         else:
             self._logger.info("Padrón ya descargado")
             return filename
@@ -151,9 +151,10 @@ class DGRPadronExcluidos(BaseDGRPadron):
     def _get_padrones_list(self):
         return self.driver.find_element(By.XPATH, NewsRGPage.EXCLUDED_LIST)
 
-    def prepare_download(self):
+    def _prepare_download(self):
+        """prepare_download"""
         self._logger.info("Obteniendo padrón excluidos")
-        return super().prepare_download()
+        return super()._prepare_download()
 
     def download_padron(self):
         """Abre el url con el texto interno del txt y crea un txt en base a el."""
@@ -195,9 +196,10 @@ class DGRPadronPasiblesMultil(BaseDGRPadron):
     def _get_padrones_list(self):
         return self.driver.find_element(By.XPATH, NewsRGPage.MULTI_LIST)
 
-    def prepare_download(self):
+    def _prepare_download(self):
+        """prepare_download"""
         self._logger.info("Obteniendo padrón pasibles miultilateral")
-        return super().prepare_download()
+        return super()._prepare_download()
 
 
 class DGRPadronPasiblesLocal(BaseDGRPadron):
@@ -212,6 +214,7 @@ class DGRPadronPasiblesLocal(BaseDGRPadron):
     def _get_padrones_list(self):
         return self.driver.find_element(By.XPATH, NewsRGPage.LOCAL_LIST)
 
-    def prepare_download(self):
+    def _prepare_download(self):
+        """prepare_download"""
         self._logger.info("Obteniendo padrón pasibles local")
-        return super().prepare_download()
+        return super()._prepare_download()

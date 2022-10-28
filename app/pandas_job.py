@@ -26,11 +26,12 @@ class PandasJob:
             _date = datetime.strptime(_date, "%Y%m")
         return _date
 
-    def split_dataframe(self, df, chunk_size):
-        chunks = list()
-        num_chunks = len(df) // chunk_size + 1
+    def split_dataframe(self, dataframe, chunk_size):
+        """split dataframe"""
+        chunks = []
+        num_chunks = len(dataframe) // chunk_size + 1
         for i in range(num_chunks):
-            chunks.append(df[i * chunk_size : (i + 1) * chunk_size])
+            chunks.append(dataframe[i * chunk_size : (i + 1) * chunk_size])
         return chunks
 
     def file_to_dataframe(self, file_path, engine):
