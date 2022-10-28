@@ -136,9 +136,9 @@ class BaseDGRPadron(ABC):
             if self._download_success():
                 return filename
             return ""
-        else:
-            self._logger.info("Padrón ya descargado")
-            return filename
+            
+        self._logger.info("Padrón ya descargado")
+        return filename
 
 
 class DGRPadronExcluidos(BaseDGRPadron):
