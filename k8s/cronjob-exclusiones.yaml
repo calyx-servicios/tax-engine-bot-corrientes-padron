@@ -2,7 +2,7 @@
 apiVersion: batch/v1
 kind: CronJob
 metadata:
-  name: tax-engine-agip-padron-general-cronjob
+  name: tax-engine-corrientes-padron-cronjob
   namespace: jx-staging
 spec:
   schedule: "0 9,21 * * *" # At 09:00 AM and 09:00 PM
@@ -11,11 +11,11 @@ spec:
     spec:
       template:
         metadata:
-          name: tax-engine-agip-padron-general-cronjob
+          name: tax-engine-corrientes-padron-cronjob
         spec:
           containers:
-          - name: tax-engine-agip-padron-general-cronjob
-            image: "699339193037.dkr.ecr.sa-east-1.amazonaws.com/calyx-servicios/bots:arba-padron-ea68271-202208132337"
+          - name: tax-engine-corrientes-padron-cronjob
+            image: "699339193037.dkr.ecr.sa-east-1.amazonaws.com/calyx-servicios/bots:tax-engine-corrientes-padron-ea68271-202208132337"
             imagePullPolicy: Always
             command:
               - "/etc/bootstrap.sh"
@@ -38,8 +38,12 @@ spec:
                 value: "0"
               - name: COMMAND
                 value: "init"
+              - name: CUIT
+                value: "30703088534"
+              - name: PASSWORD
+                value: "meli3751"
               - name: TABLE_NAME
-                value: "agip_padron_general"  
+                value: "corrientes_padron_excluidos"  
             resources:
               requests:
                 cpu: "500m"
