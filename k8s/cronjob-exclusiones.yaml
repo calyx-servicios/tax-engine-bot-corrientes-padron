@@ -2,7 +2,7 @@
 apiVersion: batch/v1
 kind: CronJob
 metadata:
-  name: tax-engine-corrientes-padron-cronjob
+  name: tax-engine-corrientes-padron-exclusiones-cronjob
   namespace: jx-staging
 spec:
   schedule: "0 9,21 * * *" # At 09:00 AM and 09:00 PM
@@ -11,10 +11,10 @@ spec:
     spec:
       template:
         metadata:
-          name: tax-engine-corrientes-padron-cronjob
+          name: tax-engine-corrientes-padron-exclusiones-cronjob
         spec:
           containers:
-          - name: tax-engine-corrientes-padron-cronjob
+          - name: tax-engine-corrientes-padron-exclusiones-cronjob
             image: "699339193037.dkr.ecr.sa-east-1.amazonaws.com/calyx-servicios/bots:tax-engine-corrientes-padron-ea68271-202208132337"
             imagePullPolicy: Always
             command:

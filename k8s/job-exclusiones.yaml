@@ -1,15 +1,15 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: tax-engine-corrientes-padron-job # Note: Job name should match the image tag that is being tested bot-txt-70003f7-202209022017
+  name: tax-engine-corrientes-padron-exclusiones-job # Note: Job name should match the image tag that is being tested bot-txt-70003f7-202209022017
   labels:
-    app: tax-engine-corrientes-padron-job
+    app: tax-engine-corrientes-padron-exclusiones-job
   namespace: jx-calyx-servicios-tax-engine-database-pr-4
 spec:
   template:
     spec:
       containers:
-      - name: tax-engine-corrientes-padron-job
+      - name: tax-engine-corrientes-padron-exclusiones-job
         image:  "699339193037.dkr.ecr.sa-east-1.amazonaws.com/calyx-servicios/bots:tax-engine-corrientes-padron-a7381fe-202210260725" # TODO: Change Image TAG
         imagePullPolicy: IfNotPresent
         command: ["/etc/bootstrap.sh"]
