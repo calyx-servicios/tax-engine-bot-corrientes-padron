@@ -1,0 +1,32 @@
+version: '3'
+services:
+  bot:
+    build: .
+    environment:
+      - DEBUG=false
+      - SHELL=/bin/bash
+      - PG_HOST=pgbouncer
+      - PG_PORT=5432
+      - PG_DB=taxengine
+      - PG_USER=taxengine
+      - PG_PASSWORD=taxengine
+      - RETRO=0
+      - COMMAND=init # use jupyter to start jupyter lab and run the app from there
+      - JUPYTER_TOKEN=the5ooxoo0ahNoojuNgiahoon8koozie
+      - CUIT=30703088534
+      - PASSWORD=meli3751
+      - TABLE_NAME=corrientes_padron_excluidos # [ corrientes_padron_excluidos | corrientes_padron_convenio | corrientes_padron_locales ]
+    ports:
+      - "1022:22"
+      - "3002:3002" # Debugpy if Debug=true | Matching the .vscode launch "debugServer": 3002 
+      - "8888:8888"
+    tty: true
+    volumes:
+      - ./:/code
+      - download-data:/mnt/downloads
+networks:
+  default:
+      external:
+        name: tax-engine-database_default
+volumes:
+  download-data:

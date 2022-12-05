@@ -1,0 +1,13 @@
+# Output files
+files/
+*.zip
+*.rar
+# Logs
+logs/
+*.log
+# Virtual environment
+venv/
+# Python cache
+__pycache__/
+*.pyc
+downloads/
